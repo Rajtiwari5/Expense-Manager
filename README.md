@@ -1,2 +1,2 @@
 # ExpenseManager
-Training project to lean interaction with DB and android UI
+Training project to leann interaction with DB and android UI
