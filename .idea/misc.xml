@@ -3,21 +3,33 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/ExpenseManager/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1005" />
-        <entry key="..\:/ExpenseManager/app/src/main/res/drawable/circular_shape.xml" value="0.1005" />
-        <entry key="..\:/ExpenseManager/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1005" />
-        <entry key="..\:/ExpenseManager/app/src/main/res/drawable/ic_baseline_calendar_month_black_24.xml" value="0.1005" />
-        <entry key="..\:/ExpenseManager/app/src/main/res/drawable/ic_baseline_format_list_bulleted_24.xml" value="0.1005" />
-        <entry key="..\:/ExpenseManager/app/src/main/res/drawable/ic_baseline_pie_chart_24.xml" value="0.1005" />
-        <entry key="..\:/ExpenseManager/app/src/main/res/drawable/ic_category.xml" value="0.1005" />
-        <entry key="..\:/ExpenseManager/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1005" />
-        <entry key="..\:/ExpenseManager/app/src/main/res/drawable/ic_rupee.xml" value="0.1005" />
-        <entry key="..\:/ExpenseManager/app/src/main/res/drawable/ic_wave_bottom_entry.xml" value="0.1005" />
-        <entry key="..\:/ExpenseManager/app/src/main/res/drawable/round_button.xml" value="0.1005" />
-        <entry key="..\:/ExpenseManager/app/src/main/res/drawable/round_button_white.xml" value="0.1005" />
-        <entry key="..\:/ExpenseManager/app/src/main/res/layout/activity_expense_entry_details.xml" value="0.17552083333333332" />
-        <entry key="..\:/ExpenseManager/app/src/main/res/layout/activity_main.xml" value="0.14666666666666667" />
-        <entry key="..\:/ExpenseManager/app/src/main/res/layout/list_view_item.xml" value="0.22" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/bottom_sheet_background.xml" value="0.1585" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_back_button.xml" value="0.1585" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_bill.xml" value="0.1585" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_calender.xml" value="0.1505" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_category.xml" value="0.1505" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_drop_down.xml" value="0.1505" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_education.xml" value="0.1585" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_entertairment.xml" value="0.1585" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_food.xml" value="0.1585" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_gifts.xml" value="0.1585" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_grocery.xml" value="0.1585" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_healthcare.xml" value="0.1585" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_house.xml" value="0.1585" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_pets.xml" value="0.1585" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_remark.xml" value="0.1585" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_rupee.xml" value="0.1505" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_shopping.xml" value="0.1585" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_transport.xml" value="0.1585" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_travel.xml" value="0.1585" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/ic_wave_bottom_entry.xml" value="0.1505" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/round_border.xml" value="0.1505" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/drawable/round_button.xml" value="0.1505" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/layout/activity_expense_entry_details.xml" value="0.25" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/layout/bottom_sheet_background.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/layout/bottom_sheet_items.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/Deepit Sharma/ExpenseManager/app/src/main/res/layout/bottom_sheet_layout.xml" value="0.33" />
       </map>
     </option>
   </component>
