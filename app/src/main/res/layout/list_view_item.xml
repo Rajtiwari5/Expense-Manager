@@ -11,7 +11,7 @@
     android:padding="5dp">
 
     <ImageView
-        android:background="@drawable/circular_shape"
+        android:background="@drawable/round_border"
         android:id="@+id/imageType"
         android:layout_width="70dp"
         android:src="@drawable/ic_launcher_foreground"
