@@ -8,14 +8,14 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:gravity="center"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:layout_margin="12dp">
 
     <ImageView
         android:background="@drawable/circular_shape"
         android:id="@+id/imageType"
-        android:layout_width="70dp"
-        android:src="@drawable/ic_launcher_foreground"
-        android:layout_height="70dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:scaleType="center"
         android:padding="4dp" />
 
@@ -34,7 +34,7 @@
                 android:id="@+id/typeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:padding="4dp"
                 android:layout_weight="1"
@@ -46,8 +46,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="4dp"
+                android:singleLine="true"
                 android:text="TextView"
-                android:textSize="18sp"/>
+                android:textSize="14sp"/>
         </LinearLayout>
     <LinearLayout
         android:id="@+id/verticalLayout1"
@@ -65,7 +66,7 @@
                 android:layout_weight="1"
                 android:padding="4dp"
                 android:text="date"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textAlignment="textEnd"/>
             <TextView
                 android:id="@+id/amountText"
@@ -75,7 +76,7 @@
                 android:text="Amount"
                 android:padding="4dp"
                 android:textAlignment="textEnd"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold"/>
     </LinearLayout>
 </LinearLayout>
