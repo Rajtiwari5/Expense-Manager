@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/ViewItemGroup"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:padding="5dp">
+
+    <ImageView
+        android:background="@drawable/circular_shape"
+        android:id="@+id/imageType"
+        android:layout_width="70dp"
+        android:src="@drawable/ic_launcher_foreground"
+        android:layout_height="70dp"
+        android:scaleType="center"
+        android:padding="4dp" />
+
+
+    <LinearLayout
+            android:id="@+id/verticalLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/typeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:padding="4dp"
+                android:layout_weight="1"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/remark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:text="TextView"
+                android:textSize="18sp"/>
+        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/verticalLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dateText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:text="date"
+                android:textSize="18sp"
+                android:textAlignment="textEnd"/>
+            <TextView
+                android:id="@+id/amountText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Amount"
+                android:padding="4dp"
+                android:textAlignment="textEnd"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
+    </LinearLayout>
+</LinearLayout>
