@@ -12,10 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+interface BottomSheetClickedListener{
+     void bottomSheetItemClicked(View v,  int position);
+}
+
 public class AdapterForSheet extends RecyclerView.Adapter<AdapterForSheet.ViewHolder> {
 
     private Context context;
     private List<ExpenseType> expenseTypeList;
+    BottomSheetClickedListener itemListener;
 
     public AdapterForSheet(Context context, List<ExpenseType> expenseTypeList) {
         this.context = context;
@@ -41,7 +46,7 @@ public class AdapterForSheet extends RecyclerView.Adapter<AdapterForSheet.ViewHo
         return expenseTypeList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView nameTypeSheet;
         public ImageView imageTypeSheet;
 
@@ -49,7 +54,12 @@ public class AdapterForSheet extends RecyclerView.Adapter<AdapterForSheet.ViewHo
             super(itemView);
             nameTypeSheet = itemView.findViewById(R.id.nameItemSheet);
             imageTypeSheet = itemView.findViewById(R.id.imageItemSheet);
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View view) {
+            itemListener.bottomSheetItemClicked(view, this.getLayoutPosition());
+        }
     }
 }
