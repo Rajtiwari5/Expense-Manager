@@ -24,7 +24,7 @@
             android:layout_margin="12dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:paddingLeft="20dp"
+            android:paddingStart ="50dp"
             android:drawablePadding="10dp"
             android:background="@drawable/round_border_white"
             android:drawableStart="@drawable/ic_baseline_format_list_bulleted_24"
@@ -38,7 +38,7 @@
             android:layout_margin="12dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:paddingLeft="20dp"
+            android:paddingStart="30dp"
             android:drawablePadding="10dp"
             android:background="@drawable/round_border_white"
             android:drawableStart="@drawable/ic_baseline_pie_chart_24"
@@ -53,6 +53,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:padding="8dp"
+        android:weightSum="5"
         android:orientation="horizontal"
         android:elevation="12dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,35 +61,32 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <ImageButton
+            android:id="@+id/previousButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2.25"
             android:background="@color/white"
             android:src="@drawable/ic_baseline_west_24" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="50dp"
-            android:src="@drawable/ic_baseline_calendar_month_black_24" />
-
 
         <TextView
             android:id="@+id/inputDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Date"
-            android:textSize="18dp"
-            android:textAlignment="textStart"
+            android:layout_weight="0.5"
+            android:textSize="18sp"
+            android:singleLine="true"
+            android:paddingLeft="100dp"
+            android:text="jul,2022"
             android:textColor="@color/black"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:drawableStart="@drawable/ic_baseline_calendar_month_black_24"
+            />
 
         <ImageButton
+            android:id="@+id/nextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2.25"
             android:background="@color/white"
             android:src="@drawable/ic_baseline_east_24" />
 
@@ -98,12 +96,11 @@
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:divider="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
     </ListView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -115,7 +112,7 @@
         android:src="@drawable/ic_baseline_add_24"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

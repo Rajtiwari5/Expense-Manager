@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:id="@+id/ViewItemGroup"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ViewItemGroup"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -15,41 +13,41 @@
         android:background="@drawable/round_button"
         android:id="@+id/imageType"
         android:layout_width="56dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_food"
         android:layout_height="56dp"
-        android:scaleType="center"
-        android:padding="4dp" />
-
+        android:padding="12dp"/>
 
     <LinearLayout
-            android:id="@+id/verticalLayout"
+        android:id="@+id/verticalLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="8dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/typeText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="8dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="2dp"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:text="TextView" />
+        <TextView
+            android:id="@+id/remark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="2dp"
+            android:singleLine="true"
+            android:text="TextView"
+            android:textSize="14sp"/>
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/typeText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:padding="4dp"
-                android:layout_weight="1"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/remark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="3dp"
-                android:singleLine="true"
-                android:text="TextView"
-                android:textSize="14sp"/>
-        </LinearLayout>
     <LinearLayout
         android:id="@+id/verticalLayout1"
         android:layout_width="match_parent"
@@ -59,25 +57,25 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/dateText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="4dp"
-                android:text="date"
-                android:textSize="14sp"
-                android:textAlignment="textEnd"/>
-            <TextView
-                android:id="@+id/amountText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Amount"
-                android:textColor="@color/green"
-                android:padding="4dp"
-                android:textAlignment="textEnd"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/dateText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="2dp"
+            android:text="date"
+            android:textSize="14sp"
+            android:textAlignment="textEnd"/>
+        <TextView
+            android:id="@+id/amountText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Amount"
+            android:textColor="@color/green"
+            android:padding="2dp"
+            android:textAlignment="textEnd"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
     </LinearLayout>
 </LinearLayout>
