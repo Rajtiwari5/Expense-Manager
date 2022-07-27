@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -71,7 +73,8 @@ public class BottomSheet extends BottomSheetDialogFragment implements BottomShee
     @Override
     public void bottomSheetItemClicked(View v, int position) {
         ExpenseType element  = myArrayList().get(position);
-        String myText = element.getNameForType();
+        dismiss();
+
         if (getActivity() instanceof ExpenseEntryDetails){
             ExpenseEntryDetails parent = (ExpenseEntryDetails) getActivity();
             parent.onExpenseTypeSelected(element);
