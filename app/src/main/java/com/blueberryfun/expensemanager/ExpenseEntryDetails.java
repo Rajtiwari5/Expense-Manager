@@ -66,10 +66,12 @@ public class ExpenseEntryDetails extends AppCompatActivity implements View.OnCli
         String amountString = intent.getStringExtra("KEY_AMOUNT");
         String dateString = intent.getStringExtra("KEY_DATE");
         String remarkString = intent.getStringExtra("KEY_REMARK");
+
         type.setText(typeString);
         amount.setText(amountString);
         transactionDate.setText(dateString);
         remark.setText(remarkString);
+
 
         if(type.getText().toString().equals("")){
             addButton.setVisibility(View.VISIBLE);
@@ -120,6 +122,12 @@ public class ExpenseEntryDetails extends AppCompatActivity implements View.OnCli
                 transactionDate = findViewById(R.id.transactionDate);
                 amount = findViewById(R.id.inputAmount);
                 remark = findViewById(R.id.inputRemark);
+                Intent intent = getIntent();
+                Integer index = intent.getIntExtra("KEY_INDEX", 0);
+
+                Cursor cursor = DB.getData();
+                cursor.moveToPosition(index);
+                Integer id = cursor.getInt(0);
 
                 String typeText1 = type.getText().toString();
                 String inputAmount1 = amount.getText().toString();
@@ -129,7 +137,7 @@ public class ExpenseEntryDetails extends AppCompatActivity implements View.OnCli
                 if(typeText1.length() == 0 || inputAmount1.length() == 0 || inputDate1.length() == 0 || inputRemark1.length() == 0){
                     Toast.makeText(ExpenseEntryDetails.this, "Fields Required!", Toast.LENGTH_SHORT).show();
                 } else{
-                    Boolean checkUpdateData = DB.updateUserData(typeText1, inputAmount1, inputDate1, inputRemark1);
+                    Boolean checkUpdateData = DB.updateUserData(id,typeText1, inputAmount1, inputDate1, inputRemark1);
                     if(checkUpdateData) {
                         Toast.makeText(ExpenseEntryDetails.this, "Update", Toast.LENGTH_SHORT).show();
                     } else {
@@ -141,9 +149,13 @@ public class ExpenseEntryDetails extends AppCompatActivity implements View.OnCli
             case R.id.deleteButton:
                 DBHelper DB;
                 DB = new DBHelper(this);
-                type = findViewById(R.id.inputType);
-                typeText = type.getText().toString();
-                DB.deleteData(typeText);
+                Intent intent1 = getIntent();
+                Integer index1 = intent1.getIntExtra("KEY_INDEX", 0);
+
+                Cursor cursor1 = DB.getData();
+                cursor1.moveToPosition(index1);
+                Integer id1 = cursor1.getInt(0);
+                DB.deleteData(id1);
                 startActivity(new Intent(ExpenseEntryDetails.this,MainActivity.class));
 
         }

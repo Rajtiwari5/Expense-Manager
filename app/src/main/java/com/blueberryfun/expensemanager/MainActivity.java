@@ -118,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements CustomCursorAdapt
 //                    inputDate.setText(month + " " + year);
 //                }
 //            });
-
     }
     @Override
     public void onResume() {
@@ -131,7 +130,6 @@ public class MainActivity extends AppCompatActivity implements CustomCursorAdapt
         customCursorAdapter.listener = this;
         listView.setAdapter(customCursorAdapter);
         customCursorAdapter.changeCursor(cursor);
-
     }
 
     @Override
@@ -141,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements CustomCursorAdapt
         Cursor cursor = DB.getData();
         cursor.moveToPosition(index);
 
+        Integer id = cursor.getInt(0);
         String typeString = cursor.getString(1);
         String amountString = cursor.getString(2);
         String dateString = cursor.getString(3);
@@ -152,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements CustomCursorAdapt
         intent.putExtra("KEY_AMOUNT",amountString);
         intent.putExtra("KEY_DATE",dateString);
         intent.putExtra("KEY_REMARK",remarkString);
-
+        intent.putExtra("KEY_INDEX", index);
 
         startActivity(intent);
     }
