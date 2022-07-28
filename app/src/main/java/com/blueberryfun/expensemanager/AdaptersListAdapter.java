@@ -3,6 +3,8 @@ package com.blueberryfun.expensemanager;
 import android.content.Context;
 import android.provider.ContactsContract;
 import androidx.annotation.NonNull;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +12,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.Format;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class AdaptersListAdapter extends ArrayAdapter<Adapters> {
-    private static final String TAG = "AdaptersListAdapter";
+
 
     private Context mcontext;
     int mResource;
@@ -33,6 +41,9 @@ public class AdaptersListAdapter extends ArrayAdapter<Adapters> {
         String date = getItem(position).getDate();
         String amount = getItem(position).getAmount();
 
+
+        Log.e("amount:-->",""+currencyFormat(amount));
+
         Adapters adapters = new Adapters(image, type, remark, date, amount);
         LayoutInflater inflater = LayoutInflater.from(mcontext);
         convertView = inflater.inflate(mResource, parent,false);
@@ -46,10 +57,13 @@ public class AdaptersListAdapter extends ArrayAdapter<Adapters> {
         tvtype.setText(type);
         tvremark.setText(remark);
         tvdate.setText(date);
-        tvamount.setText(amount);
+        tvamount.setText(currencyFormat(amount));
 
         return convertView;
-
+    }
+    public String currencyFormat(String amount) {
+        DecimalFormat formatter = new DecimalFormat("###,###,##0.##");
+        return formatter.format(Double.parseDouble(amount));
     }
 
 
