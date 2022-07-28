@@ -26,10 +26,10 @@
             android:gravity="center_vertical"
             android:paddingStart ="50dp"
             android:drawablePadding="10dp"
-            android:background="@drawable/round_border_white"
-            android:drawableStart="@drawable/ic_baseline_format_list_bulleted_24"
+            android:background="@drawable/round_button_white"
+            android:drawableStart="@drawable/ic_baseline_format_list_bulleted_primary"
             android:text="List"
-            android:textColor="@color/white" />
+            android:textColor="@color/primary" />
 
         <Button
             android:id="@+id/overviewButton"
@@ -87,6 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2.25"
+            android:longClickable="true"
             android:background="@color/white"
             android:src="@drawable/ic_baseline_east_24" />
 

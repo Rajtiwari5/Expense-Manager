@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 interface CustomCursorAdapterClickListener{
     void didTapListViewAtIndex(int index);
 }
@@ -17,6 +19,7 @@ interface CustomCursorAdapterClickListener{
 
 public class CustomCursorAdapter extends CursorAdapter implements View.OnClickListener {
     CustomCursorAdapterClickListener listener;
+
     public CustomCursorAdapter(Context context, Cursor cursor) {
         super(context, cursor, 0);
     }
@@ -44,10 +47,10 @@ public class CustomCursorAdapter extends CursorAdapter implements View.OnClickLi
         String remark = cursor.getString(4);
 
         item_type.setText(type);
-        item_amount.setText(String.valueOf(amount));
+        item_amount.setText(currencyFormat(amount));
         item_date.setText(String.valueOf(date));
         item_remark.setText(remark);
-        switch (type){
+        switch (type) {
             case "Food/Drink":
                 item_image.setImageResource(R.drawable.ic_food);
                 break;
@@ -92,5 +95,10 @@ public class CustomCursorAdapter extends CursorAdapter implements View.OnClickLi
     @Override
     public void onClick(View view) {
         listener.didTapListViewAtIndex((int) view.getTag());
+    }
+
+    public String currencyFormat(String amount) {
+        DecimalFormat formatter = new DecimalFormat("##,##,##0.00");
+        return formatter.format(Double.parseDouble(amount));
     }
 }
