@@ -2,6 +2,7 @@ package com.blueberryfun.expensemanager;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +32,6 @@ public class CustomCursorAdapter extends CursorAdapter implements View.OnClickLi
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        view.setOnClickListener(this);
-        view.setTag(cursor.getPosition());
 
         TextView item_type = view.findViewById(R.id.typeText);
         TextView item_amount = view.findViewById(R.id.amountText);
@@ -89,12 +88,21 @@ public class CustomCursorAdapter extends CursorAdapter implements View.OnClickLi
                 break;
 
         }
+
+        item_image.setTag(cursor.getPosition());
+        item_image.setOnClickListener(this);
+
     }
 
 
     @Override
     public void onClick(View view) {
-        listener.didTapListViewAtIndex((int) view.getTag());
+        switch (view.getId()){
+            case R.id.imageType:
+                Log.e("Position:-->",view.getTag().toString());
+                listener.didTapListViewAtIndex((int) view.getTag());
+        }
+
     }
 
     public String currencyFormat(String amount) {

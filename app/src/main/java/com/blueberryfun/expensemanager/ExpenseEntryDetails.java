@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -19,7 +20,9 @@ import androidx.fragment.app.DialogFragment;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,6 +34,8 @@ public class ExpenseEntryDetails extends AppCompatActivity implements View.OnCli
     Button addButton, updateButton;
     ImageView deleteButton;
     DBHelper DB;
+
+    MainActivity mainActivity = new MainActivity();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,29 +100,37 @@ public class ExpenseEntryDetails extends AppCompatActivity implements View.OnCli
                 datePicker.show(getSupportFragmentManager(), "datePicker");
                 break;
             case R.id.addButton:
-                type = findViewById(R.id.inputType);
-                transactionDate = findViewById(R.id.transactionDate);
-                amount = findViewById(R.id.inputAmount);
-                remark = findViewById(R.id.inputRemark);
+                    type = findViewById(R.id.inputType);
+                    transactionDate = findViewById(R.id.transactionDate);
+                    amount = findViewById(R.id.inputAmount);
+                    remark = findViewById(R.id.inputRemark);
 
-                String typeText = type.getText().toString();
-                String inputAmount = amount.getText().toString();
-                String inputDate = transactionDate.getText().toString();
-                String inputRemark = remark.getText().toString();
+                    String typeText = type.getText().toString();
+                    String inputAmount = amount.getText().toString();
+                    String inputDate = transactionDate.getText().toString();
+                    String inputRemark = remark.getText().toString();
 
-                if(typeText.length() == 0 || inputAmount.length() == 0 || inputDate.length() == 0 || inputRemark.length() == 0){
+                //                        SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+//                        Date d1 = format1.parse(inputDate);
+//                        SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
+//                        String d2 = format2.format(d1);
+
+
+                if (typeText.length() == 0 || inputAmount.length() == 0 || inputDate.length() == 0 || inputRemark.length() == 0) {
                     Toast.makeText(ExpenseEntryDetails.this, "Fields Required!", Toast.LENGTH_SHORT).show();
-                } else{
+                } else {
                     Boolean checkInsertData = DB.insertUserData(typeText, inputAmount, inputDate, inputRemark);
-                    if(checkInsertData) {
+                    if (checkInsertData) {
                         Toast.makeText(ExpenseEntryDetails.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(ExpenseEntryDetails.this, "New Entry Not Inserted", Toast.LENGTH_SHORT).show();
                     }
-                    startActivity(new Intent(ExpenseEntryDetails.this,MainActivity.class));
+                    startActivity(new Intent(ExpenseEntryDetails.this, MainActivity.class));
                 }
+
                 break;
             case R.id.updateButton:
+                Log.e("Update Button","clicked");
                 type = findViewById(R.id.inputType);
                 transactionDate = findViewById(R.id.transactionDate);
                 amount = findViewById(R.id.inputAmount);
@@ -125,7 +138,10 @@ public class ExpenseEntryDetails extends AppCompatActivity implements View.OnCli
                 Intent intent = getIntent();
                 Integer index = intent.getIntExtra("KEY_INDEX", 0);
 
-                Cursor cursor = DB.getData();
+                int year = mainActivity.countYear;
+                int month = mainActivity.countMonth;
+
+                Cursor cursor = DB.dataBetweenRange(month, year);
                 cursor.moveToPosition(index);
                 Integer id = cursor.getInt(0);
 
@@ -133,17 +149,26 @@ public class ExpenseEntryDetails extends AppCompatActivity implements View.OnCli
                 String inputAmount1 = amount.getText().toString();
                 String inputDate1 = transactionDate.getText().toString();
                 String inputRemark1 = remark.getText().toString();
+                Log.e("Entry Updated","In Process before try");
+                Log.e("Entry Updated","In Process");
+//                    SimpleDateFormat format3 = new SimpleDateFormat("dd/MM/yyyy");
+//                    Date d3 = format3.parse(inputDate1);
+//                    SimpleDateFormat format4 = new SimpleDateFormat("yyyy-MM-dd");
+//                    String d4 = format4.format(d3);
+//                    Log.e("Entry Updated","In Process");
 
-                if(typeText1.length() == 0 || inputAmount1.length() == 0 || inputDate1.length() == 0 || inputRemark1.length() == 0){
+                if (typeText1.length() == 0 || inputAmount1.length() == 0 || inputDate1.length() == 0 || inputRemark1.length() == 0) {
                     Toast.makeText(ExpenseEntryDetails.this, "Fields Required!", Toast.LENGTH_SHORT).show();
-                } else{
-                    Boolean checkUpdateData = DB.updateUserData(id,typeText1, inputAmount1, inputDate1, inputRemark1);
-                    if(checkUpdateData) {
-                        Toast.makeText(ExpenseEntryDetails.this, "Update", Toast.LENGTH_SHORT).show();
+                    Log.e("checking Fields","after if");
+                } else {
+                    Boolean checkUpdateData = DB.updateUserData(id, typeText1, inputAmount1, inputDate1, inputRemark1);
+                    if (checkUpdateData) {
+                        Log.e("Entry Updated","Successfully in"+month+" and"+year);
+                        Toast.makeText(ExpenseEntryDetails.this, "Entry Updated", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(ExpenseEntryDetails.this, "Not Update", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ExpenseEntryDetails.this, "Entry Not Updated", Toast.LENGTH_SHORT).show();
                     }
-                    startActivity(new Intent(ExpenseEntryDetails.this,MainActivity.class));
+                    startActivity(new Intent(ExpenseEntryDetails.this, MainActivity.class));
                 }
                 break;
             case R.id.deleteButton:
@@ -152,8 +177,12 @@ public class ExpenseEntryDetails extends AppCompatActivity implements View.OnCli
                 Intent intent1 = getIntent();
                 Integer index1 = intent1.getIntExtra("KEY_INDEX", 0);
 
-                Cursor cursor1 = DB.getData();
+
+                int year1 = mainActivity.countYear;
+                int month1 = mainActivity.countMonth;
+                Cursor cursor1 = DB.dataBetweenRange(month1, year1);
                 cursor1.moveToPosition(index1);
+
                 Integer id1 = cursor1.getInt(0);
                 DB.deleteData(id1);
                 startActivity(new Intent(ExpenseEntryDetails.this,MainActivity.class));
@@ -168,7 +197,7 @@ public class ExpenseEntryDetails extends AppCompatActivity implements View.OnCli
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-        String currentDateString  = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
+        String currentDateString  = (String) android.text.format.DateFormat.format("yyyy-MM-dd", c.getTime());
         TextView textView = findViewById(R.id.transactionDate);
         datePicker.setMaxDate(c.getTimeInMillis());
         textView.setText(currentDateString);
@@ -176,8 +205,6 @@ public class ExpenseEntryDetails extends AppCompatActivity implements View.OnCli
 
     public void onExpenseTypeSelected(ExpenseType expenseType){
         String myText = expenseType.getNameForType();
-        BottomSheet bottomSheet = new BottomSheet();
-
         type.setText(myText);
     }
 

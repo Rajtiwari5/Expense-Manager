@@ -30,18 +30,18 @@ public class BottomSheet extends BottomSheetDialogFragment implements BottomShee
 
     public static ArrayList<ExpenseType> myArrayList() {
 
-        arrayList.add(new ExpenseType(R.drawable.ic_food,"Food/Drink"));
-        arrayList.add(new ExpenseType(R.drawable.ic_transport,"Transport"));
-        arrayList.add(new ExpenseType(R.drawable.ic_grocery,"Groceries"));
-        arrayList.add(new ExpenseType(R.drawable.ic_bill,"Bills"));
-        arrayList.add(new ExpenseType(R.drawable.ic_entertairment,"Entertainment"));
-        arrayList.add(new ExpenseType(R.drawable.ic_shopping,"Shopping"));
-        arrayList.add(new ExpenseType(R.drawable.ic_house,"House"));
-        arrayList.add(new ExpenseType(R.drawable.ic_travel,"Travel"));
-        arrayList.add(new ExpenseType(R.drawable.ic_healthcare,"Healthcare"));
-        arrayList.add(new ExpenseType(R.drawable.ic_education,"Education"));
-        arrayList.add(new ExpenseType(R.drawable.ic_pets,"Pets"));
-        arrayList.add(new ExpenseType(R.drawable.ic_gifts,"Gifts"));
+        arrayList.add(new ExpenseType(R.drawable.ic_food,"Food/Drink",R.drawable.background_color_1));
+        arrayList.add(new ExpenseType(R.drawable.ic_transport,"Transport",R.drawable.background_color_2));
+        arrayList.add(new ExpenseType(R.drawable.ic_grocery,"Groceries",R.drawable.background_color_3));
+        arrayList.add(new ExpenseType(R.drawable.ic_bill,"Bills",R.drawable.background_color_4));
+        arrayList.add(new ExpenseType(R.drawable.ic_entertairment,"Entertainment",R.drawable.background_color_1));
+        arrayList.add(new ExpenseType(R.drawable.ic_shopping,"Shopping",R.drawable.background_color_2));
+        arrayList.add(new ExpenseType(R.drawable.ic_house,"House",R.drawable.background_color_3));
+        arrayList.add(new ExpenseType(R.drawable.ic_travel,"Travel",R.drawable.background_color_4));
+        arrayList.add(new ExpenseType(R.drawable.ic_healthcare,"Healthcare",R.drawable.background_color_1));
+        arrayList.add(new ExpenseType(R.drawable.ic_education,"Education",R.drawable.background_color_2));
+        arrayList.add(new ExpenseType(R.drawable.ic_pets,"Pets",R.drawable.background_color_3));
+        arrayList.add(new ExpenseType(R.drawable.ic_gifts,"Gifts",R.drawable.background_color_4));
 
         return arrayList;
     }

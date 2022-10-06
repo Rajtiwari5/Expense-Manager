@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,15 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/listButton"
@@ -56,9 +54,7 @@
         android:weightSum="5"
         android:orientation="horizontal"
         android:elevation="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        android:layout_below="@id/linearLayout">
 
         <ImageButton
             android:id="@+id/previousButton"
@@ -90,19 +86,28 @@
             android:longClickable="true"
             android:background="@color/white"
             android:src="@drawable/ic_baseline_east_24" />
-
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/listView"
+    <FrameLayout
+        android:id="@+id/fragmentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        android:layout_below="@id/linearLayout2">
 
-    </ListView>
+<!--        <ListView-->
+<!--            android:id="@+id/listView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:divider="@color/white"-->
+<!--            android:scrollbarSize="3dp"-->
+<!--            android:scrollbarStyle="outsideOverlay"-->
+<!--            android:scrollbars="vertical"-->
+<!--            android:scrollingCache="true"-->
+<!--            android:smoothScrollbar="true"-->
+<!--            android:layout_below="@id/fragmentLayout"/>-->
+
+    </FrameLayout>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -112,8 +117,8 @@
         android:layout_marginEnd="32dp"
         android:src="@drawable/ic_baseline_add_24"
         android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

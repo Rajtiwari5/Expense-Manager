@@ -7,6 +7,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context) {
         super(context, "Userdata.db", null, 1);
@@ -63,10 +68,16 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase DB = this.getWritableDatabase();
         return DB.rawQuery("Select * from UserDetails", null);
     }
-    public Cursor dataBetweenRange(String startDate, String endDate){
-        SQLiteDatabase DB = this.getWritableDatabase();
-        return  DB.rawQuery("Select * from UserDetails Where date = ? Between startDate And endDate= ?", null);
 
+    public Cursor dataBetweenRange(int month, int year) {
+
+        DecimalFormat mFormat= new DecimalFormat("00");
+        String monthParameter = mFormat.format(Double.valueOf(++month));
+        String startDate = String.valueOf(year).concat("-").concat(monthParameter).concat("-01");
+        String endDate = String.valueOf(year).concat("-").concat(monthParameter).concat("-31");
+
+        SQLiteDatabase DB = this.getWritableDatabase();
+        return  DB.rawQuery("SELECT * FROM UserDetails WHERE date BETWEEN ? AND ?", new  String[]{startDate,endDate});
 
     }
 }
