@@ -2,6 +2,7 @@ package com.blueberryfun.expensemanager;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -41,28 +42,30 @@ public class MainActivity extends AppCompatActivity implements CustomCursorAdapt
         getSupportActionBar().setElevation(0);
 
         DB = new DBHelper(MainActivity.this);
-
+        Cursor cursor = DB.dataBetweenRange(countMonth, countYear);
         listButton = findViewById(R.id.listButton);
         Button overViewButton = findViewById(R.id.overviewButton);
+        FloatingActionButton floatingActionButton = findViewById(R.id.fab);
+
+        if(savedInstanceState == null){
+
+            if (cursor.getCount() == 0) {
+                Toast.makeText(this, "NO ITEM EXISTS", Toast.LENGTH_SHORT).show();
+            } else {
+                fragmentManager.beginTransaction()
+                        .replace(R.id.fragmentLayout, MyListFragment.class, null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack("name") // name can be null
+                        .commit();
+
+            }
+        }
+
         listButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try{
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.fragmentLayout, MyListFragment.class, null)
-                            .setReorderingAllowed(true)
-                            .addToBackStack("name") // name can be null
-                            .commit();
-
-                    Button btn = (Button) findViewById(R.id.listButton);
-                    btn.setBackground(getResources().getDrawable(R.drawable.round_button_white));
-                    btn.setTextColor(Color.parseColor("#0099ff"));
-                    btn.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_format_list_bulleted_primary, 0,0,0);
-                    Button btn1 = (Button) findViewById(R.id.overviewButton);
-                    btn1.setBackground(getResources().getDrawable(R.drawable.round_button));
-                    btn1.setTextColor(Color.parseColor("#ffffff"));
-                    btn1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_pie_chart_24, 0,0,0);
+                    onListButtonClicked();
                 }
                 catch (Exception e){
                     Log.e(TAG, "Error"+e);
@@ -73,30 +76,16 @@ public class MainActivity extends AppCompatActivity implements CustomCursorAdapt
             @Override
             public void onClick(View view) {
                 try {
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.fragmentLayout, PieChartFragment.class, null)
-                            .setReorderingAllowed(true)
-                            .addToBackStack("name") // name can be null
-                            .commit();
-
-                    Button btn = (Button) findViewById(R.id.overviewButton);
-                    btn.setBackground(getResources().getDrawable(R.drawable.round_button_white));
-                    btn.setTextColor(Color.parseColor("#0099ff"));
-                    btn.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_piechart_primary, 0,0,0);
-                    Button btn1 = (Button) findViewById(R.id.listButton);
-                    btn1.setBackground(getResources().getDrawable(R.drawable.round_button));
-                    btn1.setTextColor(Color.parseColor("#ffffff"));
-                    btn1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_format_list_bulleted_24, 0,0,0);
+                    onOverViewButtonClicked();
                 }
                 catch (Exception e){
                     Log.e(TAG, "Error"+e);
                 }
             }
+
         });
 
-        FloatingActionButton btn = findViewById(R.id.fab);
-        btn.setOnClickListener(new View.OnClickListener() {
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, ExpenseEntryDetails.class));
@@ -108,29 +97,9 @@ public class MainActivity extends AppCompatActivity implements CustomCursorAdapt
         previous = findViewById(R.id.previousButton);
         next = findViewById(R.id.nextButton);
 
-
-
         String[] monthName = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
         String  monthString = monthName[month];
         inputDate.setText(monthString + ", " + year);
-
-
-        Cursor cursor = DB.dataBetweenRange(countMonth, countYear);
-
-        if (cursor.getCount() == 0) {
-            Toast.makeText(this, "NO ITEM EXISTS", Toast.LENGTH_SHORT).show();
-//            listView.setAdapter(null);
-        } else {
-//            CustomCursorAdapter customCursorAdapter = new CustomCursorAdapter(this, cursor);
-//            customCursorAdapter.listener = this;
-//            listView.setAdapter(customCursorAdapter);
-            fragmentManager.beginTransaction()
-                    .replace(R.id.fragmentLayout, MyListFragment.class, null)
-                    .setReorderingAllowed(true)
-                    .addToBackStack("name") // name can be null
-                    .commit();
-
-        }
 
             next.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -147,11 +116,7 @@ public class MainActivity extends AppCompatActivity implements CustomCursorAdapt
 
                         if (DB.dataBetweenRange(countMonth, countYear).getCount() == 0) {
                             Toast.makeText(MainActivity.this, "NO ITEM EXISTS", Toast.LENGTH_SHORT).show();
-//                            listView.setAdapter(null);
                         } else {
-//                            CustomCursorAdapter customCursorAdapter = new CustomCursorAdapter(MainActivity.this, DB.dataBetweenRange(countMonth, countYear));
-//                            customCursorAdapter.listener = MainActivity.this;
-//                            listView.setAdapter(customCursorAdapter);
                             if(listButton.getCurrentTextColor() == -16737793){
                                 fragmentManager.beginTransaction()
                                         .replace(R.id.fragmentLayout, MyListFragment.class, null)
@@ -178,11 +143,7 @@ public class MainActivity extends AppCompatActivity implements CustomCursorAdapt
 
                         if (DB.dataBetweenRange(countMonth, countYear).getCount() == 0) {
                             Toast.makeText(MainActivity.this, "NO ITEM EXISTS", Toast.LENGTH_SHORT).show();
-//                            listView.setAdapter(null);
                         } else {
-//                            CustomCursorAdapter customCursorAdapter = new CustomCursorAdapter(MainActivity.this, DB.dataBetweenRange(countMonth, countYear));
-//                            customCursorAdapter.listener = MainActivity.this;
-//                            listView.setAdapter(customCursorAdapter);
                             if(listButton.getCurrentTextColor() == -16737793){
                                 fragmentManager.beginTransaction()
                                         .replace(R.id.fragmentLayout, MyListFragment.class, null)
@@ -213,12 +174,8 @@ public class MainActivity extends AppCompatActivity implements CustomCursorAdapt
                     inputDate.setText(monthName[countMonth]  + ", " + countYear);
 
                     if (DB.dataBetweenRange(countMonth, countYear).getCount() == 0) {
-                        Toast.makeText(MainActivity.this, "NO ITEM EXISTS", Toast.LENGTH_SHORT).show();
-//                        listView.setAdapter(null);
+                        Toast.makeText(MainActivity.this, "NO ITEM EXISTS", Toast.LENGTH_SHORT).show();;
                     } else {
-//                        CustomCursorAdapter customCursorAdapter = new CustomCursorAdapter(MainActivity.this, DB.dataBetweenRange(countMonth, countYear));
-//                        customCursorAdapter.listener = MainActivity.this;
-//                        listView.setAdapter(customCursorAdapter);
                         if(listButton.getCurrentTextColor() == -16737793){
                             fragmentManager.beginTransaction()
                                     .replace(R.id.fragmentLayout, MyListFragment.class, null)
@@ -245,11 +202,7 @@ public class MainActivity extends AppCompatActivity implements CustomCursorAdapt
 
                     if (DB.dataBetweenRange(countMonth, countYear).getCount() == 0) {
                         Toast.makeText(MainActivity.this, "NO ITEM EXISTS", Toast.LENGTH_SHORT).show();
-//                        listView.setAdapter(null);
                     } else {
-//                        CustomCursorAdapter customCursorAdapter = new CustomCursorAdapter(MainActivity.this, DB.dataBetweenRange(countMonth, countYear));
-//                        customCursorAdapter.listener = MainActivity.this;
-//                        listView.setAdapter(customCursorAdapter);
                         if(listButton.getSolidColor() == -16737793){
                             fragmentManager.beginTransaction()
                                     .replace(R.id.fragmentLayout, MyListFragment.class, null)
@@ -257,8 +210,6 @@ public class MainActivity extends AppCompatActivity implements CustomCursorAdapt
                                     .addToBackStack("name") // name can be null
                                     .commit();
                         }else {
-
-
                             FragmentManager fragmentManager = getSupportFragmentManager();
                             fragmentManager.beginTransaction()
                                     .replace(R.id.fragmentLayout, PieChartFragment.class, null)
@@ -273,6 +224,24 @@ public class MainActivity extends AppCompatActivity implements CustomCursorAdapt
             }
         });
     }
+
+    private void onOverViewButtonClicked() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentLayout, PieChartFragment.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack("name") // name can be null
+                .commit();
+        Button btn = (Button) findViewById(R.id.overviewButton);
+        btn.setBackground(getResources().getDrawable(R.drawable.round_button_white));
+        btn.setTextColor(Color.parseColor("#0099ff"));
+        btn.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_piechart_primary, 0,0,0);
+        Button btn1 = (Button) findViewById(R.id.listButton);
+        btn1.setBackground(getResources().getDrawable(R.drawable.round_button));
+        btn1.setTextColor(Color.parseColor("#ffffff"));
+        btn1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_format_list_bulleted_24, 0,0,0);
+    }
+
     public int getCurrentMonth(){
         Calendar today = Calendar.getInstance();
         int month = today.get(Calendar.MONTH);
@@ -284,17 +253,29 @@ public class MainActivity extends AppCompatActivity implements CustomCursorAdapt
         return year;
     }
 
+    public void onListButtonClicked(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentLayout, MyListFragment.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack("name") // name can be null
+                .commit();
+
+        Button btn = (Button) findViewById(R.id.listButton);
+        btn.setBackground(getResources().getDrawable(R.drawable.round_button_white));
+        btn.setTextColor(Color.parseColor("#0099ff"));
+        btn.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_format_list_bulleted_primary, 0,0,0);
+        Button btn1 = (Button) findViewById(R.id.overviewButton);
+        btn1.setBackground(getResources().getDrawable(R.drawable.round_button));
+        btn1.setTextColor(Color.parseColor("#ffffff"));
+        btn1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_pie_chart_24, 0,0,0);
+    }
+
+
     @Override
     public void onResume() {
         super.onResume();
 
-//        DB = new DBHelper(MainActivity.this);
-//        Cursor cursor = DB.dataBetweenRange(countMonth, countYear);
-//        listView = findViewById(R.id.listView);
-//        CustomCursorAdapter customCursorAdapter = new CustomCursorAdapter(this, cursor);
-//        customCursorAdapter.listener = this;
-//        listView.setAdapter(customCursorAdapter);
-//        customCursorAdapter.changeCursor(cursor);
         listButton = findViewById(R.id.listButton);
 
             fragmentManager.beginTransaction()
@@ -302,8 +283,6 @@ public class MainActivity extends AppCompatActivity implements CustomCursorAdapt
                     .setReorderingAllowed(true)
                     .addToBackStack("name") // name can be null
                     .commit();
-
-
     }
 
     @Override

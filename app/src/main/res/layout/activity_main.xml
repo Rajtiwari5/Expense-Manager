@@ -21,11 +21,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:paddingStart ="50dp"
-            android:drawablePadding="10dp"
             android:background="@drawable/round_button_white"
             android:drawableStart="@drawable/ic_baseline_format_list_bulleted_primary"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:paddingStart="50dp"
             android:text="List"
             android:textColor="@color/primary" />
 
@@ -35,11 +35,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:paddingStart="30dp"
-            android:drawablePadding="10dp"
             android:background="@drawable/round_border_white"
             android:drawableStart="@drawable/ic_baseline_pie_chart_24"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:paddingStart="30dp"
             android:text="Overview"
             android:textColor="@color/white" />
 
@@ -113,12 +113,12 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/primary"
-        android:layout_marginEnd="32dp"
-        android:src="@drawable/ic_baseline_add_24"
-        android:layout_marginBottom="32dp"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"/>
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/primary"
+        android:src="@drawable/ic_baseline_add_24" />
 
 
 </RelativeLayout>
